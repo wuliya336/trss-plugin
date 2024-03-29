@@ -51,7 +51,7 @@ const files = fs
 
 let ret = []
 for (const i of files)
-  ret.push(import(`./Apps/${i}`))
+  ret.push(import(`./apps/${i}`))
 ret = await Promise.allSettled(ret)
 
 const apps = {}
