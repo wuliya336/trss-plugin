@@ -1,37 +1,54 @@
-# trss-plugin
+本为fork版，原作者: 时雨星空
+* 移除非必要功能，保留常用功能
+* 移除后门
+<div align="center">
 
-#### 介绍
-TRSS-Plugin复刻版
+# TRSS Yunzai Plugin
 
-#### 软件架构
-软件架构说明
+云崽机器人插件
 
+</div>
 
-#### 安装教程
+## 安装教程
+// 使用gitee
+```
+git clone --depth=1 https://gitee.com/wuliya336/trss-plugin ./plugins/TRSS-plugin/
+pnpm install --filter=starlight-qsign
+```
+// 使用github
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```
+git clone --depth=1 https://github.com/wuliya336/trss-plugin ./plugins/TRSS-Plugin/
+pnpm install --filter=starlight-qsign
+```
+## 使用教程
 
-#### 使用说明
+<details><summary>二维码生成</summary>
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+- 二维码 + `文字`
 
-#### 参与贡献
+</details>
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+<details><summary>Markdown（权限：主人）</summary>
 
+- md + `文件` / `URL`
 
-#### 特技
+</details>
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+<details><summary>代码高亮（权限：主人）</summary>
+
+- sc + `文件` / `URL`
+
+</details>
+
+<details><summary>远程命令（权限：主人）</summary>
+
+- rc / rcp / rcj / rcjp / dm / mm / fm + `命令`
+
+</details>
+
+<details><summary>文件操作（权限：主人）</summary>
+
+- 文件查看 / 文件上传 / 文件下载 + `路径`
+
+</details>
