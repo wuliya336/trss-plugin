@@ -12,7 +12,7 @@
 ## 安装教程
 // 使用gitee
 ```
-git clone --depth=1 https://gitee.com/wuliya336/trss-plugin ./plugins/TRSS-plugin/
+git clone --depth=1 https://gitee.com/wuliya336/trss-plugin ./plugins/TRSS-Plugin/
 pnpm install --filter=TRSS-Plugin
 ```
 // 使用github
