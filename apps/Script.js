@@ -30,13 +30,13 @@ export class Script extends plugin {
 
     if (ret.stdout) {
       const Code = await ansi_up.ansi_to_html(ret.stdout.trim())
-      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code })
+      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code, waitUntil: 'networkidle0' })
       await this.reply(img, true)
     }
 
     if (ret.stderr) {
       const Code = await ansi_up.ansi_to_html(ret.stderr.trim())
-      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code })
+      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code, waitUntil: 'networkidle0' })
       await this.reply(["标准错误输出：", img], true)
     }
 
