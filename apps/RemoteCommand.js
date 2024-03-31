@@ -93,7 +93,7 @@ export class RemoteCommand extends plugin {
         htmlDir,
         Code,
         pageGotoParams: {
-          waitUntil: 'networkidle2'
+          waitUntil: 'networkidle0'
         }
       })
       await this.reply(img, true)
@@ -107,7 +107,7 @@ export class RemoteCommand extends plugin {
         htmlDir,
         Code,
         pageGotoParams: {
-          waitUntil: 'networkidle2'
+          waitUntil: 'networkidle0'
         }
       })
       await this.reply(["错误输出：", img], true)
@@ -145,7 +145,7 @@ export class RemoteCommand extends plugin {
         htmlDir,
         Code,
         pageGotoParams: {
-          waitUntil: 'networkidle2'
+          waitUntil: 'networkidle0'
         }
       })
       await this.reply(img, true)
@@ -158,7 +158,7 @@ export class RemoteCommand extends plugin {
         htmlDir,
         Code,
         pageGotoParams: {
-          waitUntil: 'networkidle2'
+          waitUntil: 'networkidle0'
         }
       })
       return this.reply(["远程命令错误：", img], true)
@@ -171,7 +171,7 @@ export class RemoteCommand extends plugin {
         htmlDir,
         Code,
         pageGotoParams: {
-          waitUntil: 'networkidle2'
+          waitUntil: 'networkidle0'
         }
       })
       await this.reply(["标准错误输出：", img], true)
