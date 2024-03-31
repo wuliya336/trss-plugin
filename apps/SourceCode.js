@@ -1,4 +1,5 @@
 import fs from "node:fs"
+
 import puppeteer from "../../../lib/puppeteer/puppeteer.js"
 
 const htmlDir = `${process.cwd()}/plugins/TRSS-Plugin/resources/SourceCode/`
@@ -40,7 +41,13 @@ export class SourceCode extends plugin {
       return false
     }
 
-    const SourceCode = fs.readFileSync(scFile, "utf-8").replace(/ /g, "&nbsp;")
+    const SourceCode = fs.readFileSync(scFile, "utf-8")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;")
+      .replace(/ /g, "&nbsp;")
     const img = await puppeteer.screenshot("SourceCode", { tplFile, htmlDir, SourceCode })
 
     await this.reply(img, true)
