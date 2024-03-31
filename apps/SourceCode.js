@@ -21,10 +21,6 @@ export class SourceCode extends plugin {
     })
   }
 
-  async delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
-
   async SourceCode(e) {
     if(!this.e.isMaster)return false
     const msg = this.e.msg.replace("sc", "").trim()
@@ -52,7 +48,6 @@ export class SourceCode extends plugin {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;")
       .replace(/ /g, "&nbsp;")
-    await this.delay(6000);
     const img = await puppeteer.screenshot("SourceCode", { tplFile, htmlDir, SourceCode })
 
     await this.reply(img, true)
