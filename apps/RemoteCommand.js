@@ -58,6 +58,10 @@ export class RemoteCommand extends plugin {
     return ret
   }
 
+  async delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
+
   async JS(e) {
     if(!this.e.isMaster)return false
     const cmd = this.e.msg.replace("rcj", "").trim()
@@ -87,13 +91,15 @@ export class RemoteCommand extends plugin {
 
     if (ret.stdout) {
       const Code = await ansi_up.ansi_to_html(ret.stdout)
-      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code, waitUntil: 'networkidle0' })
+      await this.delay(6000); 
+      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code })
       await this.reply(img, true)
     }
 
     if (ret.error) {
       const Code = await ansi_up.ansi_to_html(Bot.Loging(ret.error))
-      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code, waitUntil: 'networkidle0' })
+      await this.delay(6000);
+      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code })
       await this.reply(["错误输出：", img], true)
     }
   }
@@ -123,19 +129,22 @@ export class RemoteCommand extends plugin {
 
     if (ret.stdout) {
       const Code = await ansi_up.ansi_to_html(ret.stdout.trim())
-      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code, waitUntil: 'networkidle0' })
+      await this.delay(6000);
+      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code })
       await this.reply(img, true)
     }
 
     if (ret.error) {
       const Code = await ansi_up.ansi_to_html(ret.error.stack)
-      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code, waitUntil: 'networkidle0' })
+      await this.delay(6000);
+      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code })
       return this.reply(["远程命令错误：", img], true)
     }
 
     if (ret.stderr) {
       const Code = await ansi_up.ansi_to_html(ret.stderr.trim())
-      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code, waitUntil: 'networkidle0' })
+      await this.delay(6000);
+      const img = await puppeteer.screenshot("Code", { tplFile, htmlDir, Code })
       await this.reply(["标准错误输出：", img], true)
     }
   }
