@@ -12,7 +12,7 @@
 }
 
 body {
-  background: url("https://api.miaomc.cn/image/get") white center top no-repeat;
+  background: url("https://api.miaomc.cn/image/get") white center center no-repeat;
   background-size: cover;
   padding: 10px 20px;
   transform: scale(1.4);
