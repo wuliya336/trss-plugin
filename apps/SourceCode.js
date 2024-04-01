@@ -48,7 +48,13 @@ export class SourceCode extends plugin {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;")
       .replace(/ /g, "&nbsp;")
-    const img = await puppeteer.screenshot("SourceCode", { tplFile, htmlDir, SourceCode })
+    const img = await puppeteer.screenshot("SourceCode", { tplFile,
+    htmlDir,
+    SourceCode,
+    pageGotoParams: {
+      waitUntil: 'load'
+    }
+  })
 
     await this.reply(img, true)
   }
