@@ -2,9 +2,16 @@
   font-family: Inconsolata;
   src: url("../fonts/Inconsolata.ttf");
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+}
 
 body {
-  background: url("https://t.mwm.moe/ycy") white center top no-repeat;
+  background: url("https://t.mwm.moe/ycy") white center top no-repeat cover fixed;
   background-size: cover;
   padding: 10px 20px;
   transform: scale(1.4);
