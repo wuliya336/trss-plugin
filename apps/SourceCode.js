@@ -52,7 +52,7 @@ export class SourceCode extends plugin {
     htmlDir,
     SourceCode,
     pageGotoParams: {
-      waitUntil: 'load'
+      waitUntil: 'networkidle0'
     }
   })
 

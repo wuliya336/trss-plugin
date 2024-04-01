@@ -50,7 +50,7 @@ export class Markdown extends plugin {
       htmlDir,
       Markdown,
       pageGotoParams: {
-        waitUntil: 'load'
+        waitUntil: 'networkidle2'
       }
     })
 
