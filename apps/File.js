@@ -1,5 +1,5 @@
-import fs from "node:fs"
-
+import fs from "node:fs/promises"
+import FileM from "../model/file.js"
 
 let Running
 let es
@@ -29,49 +29,43 @@ export class File extends plugin {
   }
 
   async List(e) {
-    if(!this.e.isMaster)return false
+    if(!(this.e.isMaster))return false
 
     this.finish("List")
-    const filePath = this.e.msg.replace("文件查看", "").trim()
+    let filePath = this.e.msg.replace("文件查看", "").trim()
     if (!filePath) {
       this.setContext("List")
-      await this.reply("请发送文件路径", true)
+      await this.reply("请发送路径", true)
       return true
     }
 
-    if (!fs.existsSync(filePath)) {
+    filePath = await new FileM(this).choose(filePath, "isDirectory")
+    if (!filePath) {
       await this.reply("路径不存在", true)
       return true
     }
-    if (!fs.statSync(filePath).isDirectory()) {
-      await this.reply("该路径不是一个文件夹", true)
-      return true
-    }
 
-    await this.reply(fs.readdirSync(filePath).join("\n"), true)
+    return this.reply((await fs.readdir(filePath)).join("\n"), true)
   }
 
   async Upload(e) {
-    if(!this.e.isMaster)return false
+ if(!(this.e.isMaster))return false
     if (Running) {
       await this.reply("有正在执行的文件任务，请稍等……", true)
       return false
     }
 
     this.finish("Upload")
-    const filePath = this.e.msg.replace("文件上传", "").trim()
+    let filePath = this.e.msg.replace("文件上传", "").trim()
     if (!filePath) {
       this.setContext("Upload")
       await this.reply("请发送文件路径", true)
       return true
     }
 
-    if (!fs.existsSync(filePath)) {
+    filePath = await new FileM(this).choose(filePath)
+    if (!filePath) {
       await this.reply("文件不存在", true)
-      return true
-    }
-    if (!fs.statSync(filePath).isFile()) {
-      await this.reply("暂不支持上传文件夹", true)
       return true
     }
 
@@ -101,7 +95,6 @@ export class File extends plugin {
         else
           await this.reply(`文件上传完成：${JSON.stringify(res)}`, true)
       }
-
     } catch (err) {
       logger.error(`文件上传错误：${logger.red(err.stack)}`)
       await this.reply(`文件上传错误：${err.stack}`)
@@ -116,7 +109,7 @@ export class File extends plugin {
   }
 
   async Download(e) {
-    if(!this.e.isMaster)return false
+ if(!(this.e.isMaster))return false
     if(!this.e.file)return false
 
     this.finish("Download")

@@ -1,32 +1,33 @@
-import fs from 'node:fs'
-import puppeteer from '../../../lib/puppeteer/puppeteer.js'
-import MarkdownIt from 'markdown-it'
-const md = new MarkdownIt({
-  html: true
-})
+import fs from "node:fs/promises"
+import File from "../model/file.js"
 
-const htmlDir = `${process.cwd()}/plugins/TRSS-Plugin/Resources/Markdown/`
+
+import puppeteer from "../../../lib/puppeteer/puppeteer.js"
+import MarkdownIt from "markdown-it"
+const md = new MarkdownIt({ html: true })
+
+const htmlDir = `${process.cwd()}/plugins/TRSS-Plugin/resources/Markdown/`
 const tplFile = `${htmlDir}Markdown.html`
 
 export class Markdown extends plugin {
-  constructor () {
+  constructor() {
     super({
-      name: 'Markdown',
-      dsc: 'Markdown',
-      event: 'message',
+      name: "Markdown",
+      dsc: "Markdown",
+      event: "message",
       priority: 10,
       rule: [
         {
-          reg: '^md.+',
-          fnc: 'Markdown'
+          reg: "^md.+",
+          fnc: "Markdown"
         }
       ]
     })
   }
 
-  async Markdown (e) {
-    if (!this.e.isMaster) return false
-    const msg = this.e.msg.replace('md', '').trim()
+  async Markdown(e) {
+ if(!(this.e.isMaster))return false
+    const msg = this.e.msg.replace("md", "").trim()
     logger.mark(`[Markdown] 查看：${logger.blue(msg)}`)
 
     let mdFile = msg
@@ -34,23 +35,24 @@ export class Markdown extends plugin {
       mdFile = `${process.cwd()}/data/cache.md`
       const ret = await Bot.download(msg, mdFile)
       if (!ret) {
-        await this.reply('文件下载错误', true)
+        await this.reply("文件下载错误", true)
         return false
       }
     }
 
-    if (!(fs.existsSync(mdFile) && fs.statSync(mdFile).isFile())) {
-      await this.reply('文件不存在', true)
+    mdFile = await new File(this).choose(mdFile)
+    if (!mdFile) {
+      await this.reply("文件不存在", true)
       return false
     }
 
-    const Markdown = md.render(fs.readFileSync(mdFile, 'utf-8'))
-    const img = await puppeteer.screenshot('Markdown', {
+    const Markdown = md.render(await fs.readFile(mdFile, "utf-8"))
+    const img = await puppeteer.screenshot("Markdown", {
       tplFile,
       htmlDir,
       Markdown,
       pageGotoParams: {
-        waitUntil: 'networkidle2'
+        waitUntil: "networkidle2"
       }
     })
 
