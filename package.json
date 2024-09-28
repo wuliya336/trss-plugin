@@ -5,6 +5,7 @@
   "dependencies": {
     "ansi_up": "^6.0.2",
     "markdown-it": "^14.1.0",
-    "qrcode": "^1.5.3"
+    "qrcode": "^1.5.3",
+    "@highlightjs/cdn-assets": "^11.10.0"
   }
 }
