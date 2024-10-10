@@ -10,17 +10,19 @@
 </div>
 
 ## 安装教程
-// 使用gitee
-```
-git clone --depth=1 https://gitee.com/wuliya336/trss-plugin ./plugins/TRSS-Plugin/
-pnpm install --filter=TRSS-Plugin
-```
-// 使用github
+// 使用Github
 
 ```
 git clone --depth=1 https://github.com/wuliya336/trss-plugin ./plugins/TRSS-Plugin/
 pnpm install --filter=TRSS-Plugin
 ```
+// 使用Github镜像
+
+```
+git clone --depth=1 https://gh.wuliya336.top/github.com/wuliya336/trss-plugin ./plugins/TRSS-Plugin/
+pnpm install --filter=TRSS-Plugin
+```
+
 ## 使用教程
 
 <details><summary>二维码生成</summary>
